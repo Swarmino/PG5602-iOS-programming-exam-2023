@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7E55C0382B03927F0045435E /* SplashView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E55C0372B03927F0045435E /* SplashView.swift */; };
+		7E55C03B2B0395A90045435E /* RecipeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E55C03A2B0395A90045435E /* RecipeDetailView.swift */; };
+		7E55C03D2B0395C00045435E /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E55C03C2B0395C00045435E /* RecipeListView.swift */; };
+		7E55C03F2B0395CB0045435E /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E55C03E2B0395CB0045435E /* SettingsView.swift */; };
+		7E55C0412B0395DA0045435E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E55C0402B0395DA0045435E /* SearchView.swift */; };
 		7EB8C2032B038B6B00675879 /* RatatouilleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8C2022B038B6B00675879 /* RatatouilleApp.swift */; };
 		7EB8C2052B038B6B00675879 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB8C2042B038B6B00675879 /* ContentView.swift */; };
 		7EB8C2072B038B6C00675879 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EB8C2062B038B6C00675879 /* Assets.xcassets */; };
@@ -36,6 +41,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		7E55C0372B03927F0045435E /* SplashView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashView.swift; sourceTree = "<group>"; };
+		7E55C03A2B0395A90045435E /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		7E55C03C2B0395C00045435E /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
+		7E55C03E2B0395CB0045435E /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		7E55C0402B0395DA0045435E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		7EB8C1FF2B038B6B00675879 /* Ratatouille.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ratatouille.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EB8C2022B038B6B00675879 /* RatatouilleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatatouilleApp.swift; sourceTree = "<group>"; };
 		7EB8C2042B038B6B00675879 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -75,6 +85,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		7E55C0392B0392950045435E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7EB8C2042B038B6B00675879 /* ContentView.swift */,
+				7E55C0372B03927F0045435E /* SplashView.swift */,
+				7E55C03A2B0395A90045435E /* RecipeDetailView.swift */,
+				7E55C03C2B0395C00045435E /* RecipeListView.swift */,
+				7E55C03E2B0395CB0045435E /* SettingsView.swift */,
+				7E55C0402B0395DA0045435E /* SearchView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		7EB8C1F62B038B6B00675879 = {
 			isa = PBXGroup;
 			children = (
@@ -99,7 +122,7 @@
 			isa = PBXGroup;
 			children = (
 				7EB8C2022B038B6B00675879 /* RatatouilleApp.swift */,
-				7EB8C2042B038B6B00675879 /* ContentView.swift */,
+				7E55C0392B0392950045435E /* Views */,
 				7EB8C2062B038B6C00675879 /* Assets.xcassets */,
 				7EB8C20B2B038B6C00675879 /* Persistence.swift */,
 				7EB8C20D2B038B6C00675879 /* Ratatouille.xcdatamodeld */,
@@ -264,7 +287,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				7EB8C20C2B038B6C00675879 /* Persistence.swift in Sources */,
+				7E55C0412B0395DA0045435E /* SearchView.swift in Sources */,
+				7E55C03F2B0395CB0045435E /* SettingsView.swift in Sources */,
+				7E55C03D2B0395C00045435E /* RecipeListView.swift in Sources */,
+				7E55C03B2B0395A90045435E /* RecipeDetailView.swift in Sources */,
 				7EB8C2052B038B6B00675879 /* ContentView.swift in Sources */,
+				7E55C0382B03927F0045435E /* SplashView.swift in Sources */,
 				7EB8C20F2B038B6C00675879 /* Ratatouille.xcdatamodeld in Sources */,
 				7EB8C2032B038B6B00675879 /* RatatouilleApp.swift in Sources */,
 			);
