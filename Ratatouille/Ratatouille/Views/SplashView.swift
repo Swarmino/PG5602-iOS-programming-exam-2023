@@ -15,16 +15,17 @@ struct SplashView: View {
             ZStack {
                 // Fading View
                 VStack {
-                    Text("Fading View")
+                    Image("temp-test").resizable()
+                    Text("SplashView").font(.title)
                 }
                 .opacity(isFadedOut ? 0 : 1)
                 .onAppear {
                     // Use DispatchQueue to delay the animation by 3 seconds
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
-                        withAnimation {
-                            self.isFadedOut = true
-                        }
-                    }
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+//                        withAnimation {
+//                            self.isFadedOut = true
+//                        }
+//                    }
                 }
 
                 // New View (Rendered after fade-out)
