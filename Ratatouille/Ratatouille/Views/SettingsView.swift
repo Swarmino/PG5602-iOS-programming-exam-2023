@@ -9,10 +9,51 @@ import SwiftUI
 
 struct SettingsView: View {
     var body: some View {
-        VStack{
-            Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-            Text("SettingsView")
+        
+        NavigationView {
+            Form {
+                NavigationLink(destination: ProfileSettingView()) {
+                    HStack{
+                        Image(systemName: "person.crop.circle")
+                        Text("Profile")
+                    }
+                }
+                
+                NavigationLink(destination: ProfileSettingView()) {
+                    HStack{
+                        Image(systemName: "globe.americas.fill")
+                        Text("Edit countries")
+                    }
+                }
+                
+                NavigationLink(destination: ProfileSettingView()) {
+                    HStack{
+                        Image(systemName: "book")
+                        Text("Edit categories")
+                    }
+                }
+            }
+            
         }
+    }
+    
+}
+
+struct ProfileSettingView: View {
+    var body: some View {
+        Text("ProfileView")
+    }
+}
+
+struct CountrySettingView: View {
+    var body: some View {
+        Text("CountrySettingView")
+    }
+}
+
+struct CategorySettingView: View {
+    var body: some View {
+        Text("CategorySettingView")
     }
 }
 
