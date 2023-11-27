@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  Ratatouille
 //
-//  Created by Victor Falck-Næss on 14/11/2023.
+//  Created by Victor Falck-Næss on 27/11/2023.
 //
 
 import SwiftUI
@@ -17,64 +17,29 @@ struct ContentView: View {
     private var items: FetchedResults<Item>
 
     var body: some View {
-        
-        
-        
-        TabView() {
-            
-            SplashView().tabItem {
-                VStack{
-                    Image(systemName: "house")
-                    Text("Home")
+        NavigationView {
+            List {
+                ForEach(items) { item in
+                    NavigationLink {
+                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                    } label: {
+                        Text(item.timestamp!, formatter: itemFormatter)
+                    }
+                }
+                .onDelete(perform: deleteItems)
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    EditButton()
+                }
+                ToolbarItem {
+                    Button(action: addItem) {
+                        Label("Add Item", systemImage: "plus")
+                    }
                 }
             }
-            
-            SearchView().tabItem {
-                VStack{
-                    Image(systemName: "magnifyingglass")
-                    Text("Search")
-                }
-            }
-            
-            RecipeListView().tabItem {
-                VStack{
-                    Image(systemName: "fork.knife")
-                    Text("My recipes")
-                }
-            }
-            
-            SettingsView().tabItem {
-                VStack{
-                    Image(systemName: "gear")
-                    Text("Settings")
-                }
-            }
+            Text("Select an item")
         }
-        
-//                NavigationView {
-//                    List {
-//                        ForEach(items) { item in
-//                            NavigationLink {
-//                                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
-//                            } label: {
-//                                Text(item.timestamp!, formatter: itemFormatter)
-//                            }
-//                        }
-//                        .onDelete(perform: deleteItems)
-//                    }
-//                    .toolbar {
-//                        ToolbarItem(placement: .navigationBarTrailing) {
-//                            EditButton()
-//                        }
-//                        ToolbarItem {
-//                            Button(action: addItem) {
-//                                Label("Add Item", systemImage: "plus")
-//                            }
-//                        }
-//                    }
-//                    Text("Select an item")
-//                }
-        
     }
 
     private func addItem() {
@@ -118,5 +83,4 @@ private let itemFormatter: DateFormatter = {
 
 #Preview {
     ContentView().environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-        //.preferredColorScheme(.dark)
 }
