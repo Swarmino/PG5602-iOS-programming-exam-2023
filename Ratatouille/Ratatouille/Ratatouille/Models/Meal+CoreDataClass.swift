@@ -2,7 +2,7 @@
 //  Meal+CoreDataClass.swift
 //  Ratatouille
 //
-//  Created by Victor Falck-Næss on 27/11/2023.
+//  Created by Victor Falck-Næss on 28/11/2023.
 //
 //
 
@@ -13,5 +13,4 @@ import CoreData
 public class Meal: NSManagedObject {
 
 }
-
 
