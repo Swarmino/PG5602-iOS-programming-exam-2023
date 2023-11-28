@@ -2,7 +2,7 @@
 //  Area+CoreDataProperties.swift
 //  Ratatouille
 //
-//  Created by Victor Falck-Næss on 25/11/2023.
+//  Created by Victor Falck-Næss on 27/11/2023.
 //
 //
 
@@ -16,6 +16,7 @@ extension Area {
         return NSFetchRequest<Area>(entityName: "Area")
     }
 
+    @NSManaged public var flagName: String?
     @NSManaged public var name: String?
     @NSManaged public var meal: Meal?
 

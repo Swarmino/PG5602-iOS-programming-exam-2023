@@ -12,40 +12,45 @@ struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        sortDescriptors: [NSSortDescriptor(keyPath: \Meal.name, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>
+    
+    private var meals: FetchedResults<Meal>
 
     var body: some View {
+        MainView()
+        /*
         NavigationView {
             List {
-                ForEach(items) { item in
+                ForEach(meals) { meal in
                     NavigationLink {
-                        Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+                        Text("Meal at \(meal.name!)")
                     } label: {
-                        Text(item.timestamp!, formatter: itemFormatter)
+                        Text("\(meal.name!)")
                     }
                 }
-                .onDelete(perform: deleteItems)
+                .onDelete(perform: deleteMeals)
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()
                 }
                 ToolbarItem {
-                    Button(action: addItem) {
+                    Button(action: addMeal) {
                         Label("Add Item", systemImage: "plus")
                     }
                 }
             }
             Text("Select an item")
         }
+         */
     }
 
-    private func addItem() {
+    private func addMeal() {
         withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
+            let newMeal = Meal(context: viewContext)
+            newMeal.id = UUID()
+            newMeal.name = "Potato"
 
             do {
                 try viewContext.save()
@@ -57,10 +62,12 @@ struct ContentView: View {
             }
         }
     }
+    
+    
 
-    private func deleteItems(offsets: IndexSet) {
+    private func deleteMeals(offsets: IndexSet) {
         withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
+            offsets.map { meals[$0] }.forEach(viewContext.delete)
 
             do {
                 try viewContext.save()
