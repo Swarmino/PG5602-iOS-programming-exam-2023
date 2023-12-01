@@ -2,7 +2,7 @@
 //  Category+CoreDataProperties.swift
 //  Ratatouille
 //
-//  Created by Victor Falck-Næss on 28/11/2023.
+//  Created by Victor Falck-Næss on 01/12/2023.
 //
 //
 
@@ -17,6 +17,7 @@ extension Category {
     }
 
     @NSManaged public var name: String?
+    @NSManaged public var archived: Bool
     @NSManaged public var meal: Meal?
 
 }

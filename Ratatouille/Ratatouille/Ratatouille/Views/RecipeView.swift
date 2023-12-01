@@ -30,12 +30,21 @@ struct RecipeView: View {
                     NavigationLink {
                         Text("Meal at \(meal.name!)")
                     } label: {
-                        Text("\(meal.name!)")
+                        HStack{
+                            Image(systemName: meal.favourite ? "star.fill" : "star")
+                                .resizable()
+                                .frame(width: 15, height: 15)
+                            Image(meal.imageUrl ?? "default")
+                                .resizable()
+                                .frame(width: 50, height: 50)
+                            Text("\(meal.name!)")
+                        }
+                        
                     }
                 }
                 .onDelete(perform: ArchiveMeal)
 
-            }
+            }.navigationTitle("Mine oppskrifter")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     EditButton()

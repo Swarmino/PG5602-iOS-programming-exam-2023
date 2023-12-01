@@ -3,19 +3,22 @@ import SwiftUI
 
 class SearchResultsCache: ObservableObject {
     static let shared = SearchResultsCache()
-    
+
     @Published var cachedResults: [String: [MealData]] = [:]
-    
+
     private init() {}
-    
+
     func cacheResults(query: String, results: [MealData]) {
-        cachedResults[query] = results
+        DispatchQueue.main.async {
+            self.cachedResults[query] = results
+        }
     }
-    
+
     func getCachedResults(for query: String) -> [MealData]? {
         return cachedResults[query]
     }
 }
+
 
 struct SearchView: View {
     @Environment(\.managedObjectContext) private var viewContext
@@ -66,11 +69,11 @@ struct SearchBar: View {
     @ObservedObject var searchResultsCache: SearchResultsCache
     
     enum Category: String, CaseIterable, Identifiable {
-        case Name, Ingredient, Area, Category
+        case Navn, Ingredienser, Område, Kategori
         var id: Self { self }
     }
     
-    @State private var selectedCategory: Category = .Name
+    @State private var selectedCategory: Category = .Navn
     
     var body: some View {
         VStack {
@@ -98,7 +101,7 @@ struct SearchBar: View {
     private func handleSearch() {
         let api = MealAPI()
         switch selectedCategory {
-        case .Name:
+        case .Navn:
             api.fetchByName(name: searchText) { result in
                 switch result {
                 case .success(let meals):
@@ -109,7 +112,7 @@ struct SearchBar: View {
                     print(error)
                 }
             }
-        case .Ingredient:
+        case .Ingredienser:
             api.fetchByIngredient(ingredient: searchText) { result in
                 switch result {
                 case .success(let meals):
@@ -120,7 +123,7 @@ struct SearchBar: View {
                     print(error)
                 }
             }
-        case .Area:
+        case .Område:
             api.fetchByArea(area: searchText) { result in
                 switch result {
                 case .success(let meals):
@@ -131,7 +134,7 @@ struct SearchBar: View {
                     print(error)
                 }
             }
-        case .Category:
+        case .Kategori:
             api.fetchByCategory(category: searchText) { result in
                 switch result {
                 case .success(let meals):
