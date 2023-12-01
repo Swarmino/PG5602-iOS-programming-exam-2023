@@ -11,13 +11,13 @@ struct MainView: View {
     var body: some View {
         TabView{
             RecipeView().tabItem{
-                Label("Recipes", systemImage: "book.pages")
+                Label("Oppskrifter", systemImage: "book.pages")
             }
             SearchView().tabItem{
-                Label("Search", systemImage: "magnifyingglass")
+                Label("Søk", systemImage: "magnifyingglass")
             }
             SettingsView().tabItem{
-                Label("Settings", systemImage: "gearshape")
+                Label("Innstillinger", systemImage: "gearshape")
             }
         }
     }
