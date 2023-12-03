@@ -31,7 +31,7 @@ struct SearchView: View {
         NavigationView {
             VStack {
                 ResultView(mealResults: $mealResults)
-                    .navigationTitle("Search")
+                    .navigationTitle("Søk")
                 Spacer()
                 SearchBar(mealResults: $mealResults, searchResultsCache: searchResultsCache)
             }
@@ -134,7 +134,15 @@ struct ResultView: View {
     
     var body: some View {
         if mealResults.isEmpty {
+            Spacer()
+            Image(systemName: "questionmark.folder")
+                .resizable()
+                .scaledToFit()
+                .frame(width: 50, height: 50)
+                .foregroundColor(.ratBlue)
+                .padding()
             Text("No results found")
+            Spacer()
         } else {
             List {
                 ForEach(mealResults, id: \.idMeal) { meal in

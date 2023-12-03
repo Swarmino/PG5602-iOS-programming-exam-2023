@@ -161,24 +161,6 @@ struct RecipeView: View {
                 }
             }
         }
-        
-        private func addMeal() {
-            withAnimation {
-                let newMeal = Meal(context: viewContext)
-                newMeal.id = UUID()
-                newMeal.name = "Potato"
-                newMeal.favourite = false
-                newMeal.archived = false
-                newMeal.imageUrl = ""
-                
-                do {
-                    try viewContext.save()
-                } catch {
-                    let nsError = error as NSError
-                    fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-                }
-            }
-        }
     }
 }
 
