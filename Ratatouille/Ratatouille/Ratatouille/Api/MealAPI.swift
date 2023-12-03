@@ -62,18 +62,15 @@ class MealAPI {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
 
-                // Attempt to decode as MealResponse
                 if let response = try? decoder.decode(MealResponse.self, from: data),
                    let meals = response.meals, !meals.isEmpty {
                     completion(.success(meals))
                 } else {
-                    // If decoding as MealResponse fails, attempt to decode as MealSimplifiedResponse
                     let simplifiedResponse = try decoder.decode(MealSimplifiedResponse.self, from: data)
-                    
-                    // Extract idMeal values
+
                     let idMeals = simplifiedResponse.meals?.compactMap { $0.idMeal } ?? []
 
-                    // Use idMeals to fetch detailed information for each idMeal
+
                     let dispatchGroup = DispatchGroup()
                     var detailedMeals: [MealData] = []
 

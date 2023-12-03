@@ -38,6 +38,7 @@
 		7EAEC7A72B1A042600F56584 /* FlagAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EAEC7A62B1A042600F56584 /* FlagAPI.swift */; };
 		7EB056FF2B1610A100F6AD94 /* RecipeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB056FE2B1610A100F6AD94 /* RecipeView.swift */; };
 		7EB057012B16123800F6AD94 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EB057002B16123800F6AD94 /* SettingsView.swift */; };
+		7ED6AFFC2B1D3D0B004AE1F2 /* SearchResultCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ED6AFFB2B1D3D0B004AE1F2 /* SearchResultCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +93,7 @@
 		7EAEC7A62B1A042600F56584 /* FlagAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlagAPI.swift; sourceTree = "<group>"; };
 		7EB056FE2B1610A100F6AD94 /* RecipeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeView.swift; sourceTree = "<group>"; };
 		7EB057002B16123800F6AD94 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		7ED6AFFB2B1D3D0B004AE1F2 /* SearchResultCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -184,14 +186,15 @@
 		7EA0F27B2B14C7F90084AC3D /* Ratatouille */ = {
 			isa = PBXGroup;
 			children = (
-				7E7575282B175BC40018BA2F /* Api */,
-				7E69127B2B14CB88007F8650 /* Views */,
-				7EA0F2BB2B14C9410084AC3D /* Models */,
-				7EA0F27C2B14C7F90084AC3D /* RatatouilleApp.swift */,
 				7E7FA7662B1C95CE00746F32 /* AppearanceSettings.swift */,
+				7ED6AFFB2B1D3D0B004AE1F2 /* SearchResultCache.swift */,
+				7E7575282B175BC40018BA2F /* Api */,
+				7EA0F2BB2B14C9410084AC3D /* Models */,
+				7E69127B2B14CB88007F8650 /* Views */,
 				7EA0F2802B14C7FA0084AC3D /* Assets.xcassets */,
-				7EA0F2852B14C7FA0084AC3D /* Persistence.swift */,
 				7EA0F2872B14C7FA0084AC3D /* Ratatouille.xcdatamodeld */,
+				7EA0F2852B14C7FA0084AC3D /* Persistence.swift */,
+				7EA0F27C2B14C7F90084AC3D /* RatatouilleApp.swift */,
 				7EA0F2822B14C7FA0084AC3D /* Preview Content */,
 			);
 			path = Ratatouille;
@@ -361,6 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7ED6AFFC2B1D3D0B004AE1F2 /* SearchResultCache.swift in Sources */,
 				7E75752E2B17728E0018BA2F /* SearchView.swift in Sources */,
 				7E7FA7622B1A236100746F32 /* Area+CoreDataClass.swift in Sources */,
 				7E69129F2B160D4B007F8650 /* MainView.swift in Sources */,
@@ -547,6 +551,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ratatouille/Preview Content\"";
@@ -575,6 +580,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"Ratatouille/Preview Content\"";

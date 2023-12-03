@@ -1,9 +1,4 @@
-//
-//  RatatouilleApp.swift
-//  Ratatouille
-//
-//  Created by Victor Falck-Næss on 27/11/2023.
-//
+
 
 import SwiftUI
 
