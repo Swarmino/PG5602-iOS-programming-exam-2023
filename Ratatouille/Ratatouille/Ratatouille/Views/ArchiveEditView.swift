@@ -58,6 +58,16 @@ struct ArchiveEditView: View {
                         List {
                             ForEach(meals) { meal in
                                 Text("\(meal.name!)")
+                                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                        Button {
+                                            withAnimation {
+                                                restoreMeal(meal: meal)
+                                            }
+                                        } label: {
+                                            Label("Gjenopprett", systemImage: "trash.slash")
+                                        }
+                                        .tint(.green)
+                                    }
                             }
                             .onDelete(perform: deleteMeals)
                         }
@@ -73,6 +83,16 @@ struct ArchiveEditView: View {
                         List {
                             ForEach(ingredients) { ingredient in
                                 Text("\(ingredient.name!)")
+                                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                        Button {
+                                            withAnimation {
+                                                restoreIngredient(ingredient: ingredient)
+                                            }
+                                        } label: {
+                                            Label("Gjenopprett", systemImage: "trash.slash")
+                                        }
+                                        .tint(.green)
+                                    }
                             }
                             .onDelete(perform: deleteIngredients)
                         }
@@ -88,6 +108,16 @@ struct ArchiveEditView: View {
                         List {
                             ForEach(areas) { area in
                                 Text("\(area.name!)")
+                                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                        Button {
+                                            withAnimation {
+                                                restoreArea(area: area)
+                                            }
+                                        } label: {
+                                            Label("Gjenopprett", systemImage: "trash.slash")
+                                        }
+                                        .tint(.green)
+                                    }
                             }
                             .onDelete(perform: deleteArea)
                         }
@@ -103,6 +133,16 @@ struct ArchiveEditView: View {
                         List {
                             ForEach(categories) { category in
                                 Text("\(category.name!)")
+                                    .swipeActions(edge: .leading, allowsFullSwipe: true) {
+                                        Button {
+                                            withAnimation {
+                                                restoreCategory(category: category)
+                                            }
+                                        } label: {
+                                            Label("Gjenopprett", systemImage: "trash.slash")
+                                        }
+                                        .tint(.green)
+                                    }
                             }
                             .onDelete(perform: deleteCategory)
                         }
@@ -151,6 +191,54 @@ struct ArchiveEditView: View {
     private func deleteCategory(offsets: IndexSet) {
         withAnimation {
             offsets.map { categories[$0] }.forEach(viewContext.delete)
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+    
+    private func restoreMeal(meal: Meal) {
+        withAnimation {
+            meal.archived = false
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+    
+    private func restoreIngredient(ingredient: Ingredient) {
+        withAnimation {
+            ingredient.archived = false
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+    
+    private func restoreArea(area: Area) {
+        withAnimation {
+            area.archived = false
+            do {
+                try viewContext.save()
+            } catch {
+                let nsError = error as NSError
+                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            }
+        }
+    }
+    
+    private func restoreCategory(category: Category) {
+        withAnimation {
+            category.archived = false
             do {
                 try viewContext.save()
             } catch {

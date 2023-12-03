@@ -19,7 +19,7 @@ struct MainView: View {
             SettingsView().tabItem{
                 Label("Innstillinger", systemImage: "gearshape")
             }
-        }
+        }.accentColor(.ratBlue)
     }
 }
 

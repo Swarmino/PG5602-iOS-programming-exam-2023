@@ -61,9 +61,6 @@ class MealAPI {
             do {
                 let decoder = JSONDecoder()
                 decoder.keyDecodingStrategy = .convertFromSnakeCase
-                if let string = String(data: data, encoding: .utf8) {
-                    print(string)
-                }
 
                 // Attempt to decode as MealResponse
                 if let response = try? decoder.decode(MealResponse.self, from: data),
