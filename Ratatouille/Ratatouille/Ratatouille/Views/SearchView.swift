@@ -32,9 +32,6 @@ struct SearchView: View {
             VStack {
                 ResultView(mealResults: $mealResults)
                     .navigationTitle("Search")
-                    .onAppear {
-                        fetchData()
-                    }
                 Spacer()
                 SearchBar(mealResults: $mealResults, searchResultsCache: searchResultsCache)
             }
@@ -42,23 +39,6 @@ struct SearchView: View {
         .onDisappear {
             // Cache the results when the view disappears
             searchResultsCache.cacheResults(query: "", results: mealResults)
-        }
-    }
-    
-    private func fetchData() {
-        if let cachedResults = searchResultsCache.getCachedResults(for: "") {
-            // Use cached results if available
-            mealResults = cachedResults
-        } else {
-            let api = MealAPI()
-            api.fetchByName(name: "") { result in
-                switch result {
-                case .success(let meals):
-                    mealResults = meals
-                case .failure(let error):
-                    print(error)
-                }
-            }
         }
     }
 }
