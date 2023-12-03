@@ -3,17 +3,17 @@ import SwiftUI
 
 class SearchResultsCache: ObservableObject {
     static let shared = SearchResultsCache()
-
+    
     @Published var cachedResults: [String: [MealData]] = [:]
-
+    
     private init() {}
-
+    
     func cacheResults(query: String, results: [MealData]) {
         DispatchQueue.main.async {
             self.cachedResults[query] = results
         }
     }
-
+    
     func getCachedResults(for query: String) -> [MealData]? {
         return cachedResults[query]
     }
@@ -151,6 +151,7 @@ struct SearchBar: View {
 
 struct ResultView: View {
     @Binding var mealResults: [MealData]
+    @Environment(\.managedObjectContext) private var viewContext
     
     var body: some View {
         if mealResults.isEmpty {
@@ -161,8 +162,47 @@ struct ResultView: View {
                     NavigationLink(destination: MealDetailView(meal: meal)) {
                         MealView(meal: meal)
                     }
+                    .swipeActions(edge: .trailing) {
+                        Button {
+                            AddMealToCD(meal: meal)
+                        } label: {
+                            Label("Add to device", systemImage: "square.and.arrow.down.fill")
+                        }
+                        .tint(.green)
+                    }
                 }
             }
+        }
+    }
+    
+    func AddMealToCD(meal: MealData) {
+        let newMeal = Meal(context: viewContext)
+        newMeal.name = meal.strMeal
+        newMeal.archived = false
+        newMeal.favourite = false
+        newMeal.instructions = meal.strInstructions
+        newMeal.imageUrl = meal.strMealThumb
+        newMeal.id = UUID()
+        
+        let newCategory = Category(context: viewContext)
+        newCategory.name = meal.strCategory
+        newCategory.archived = false
+        newMeal.addToCategory(newCategory)
+        
+        let newArea = Area(context: viewContext)
+        newArea.name = meal.strArea
+        newArea.archived = false
+        newMeal.addToArea(newArea)
+        
+        let newIngredient = Ingredient(context: viewContext)
+        newIngredient.name = meal.strIngredient1
+        newIngredient.archived = false
+        newMeal.addToIngredient(newIngredient)
+        
+        do {
+            try viewContext.save()
+        } catch {
+            print(error.localizedDescription)
         }
     }
 }
@@ -171,27 +211,25 @@ struct MealView: View {
     let meal: MealData
     @State var mealImage: UIImage? = nil
     
+    var MealApi = MealAPI()
+    
     var body: some View {
         HStack {
             Image(uiImage: mealImage ?? UIImage(systemName: "photo")!)
                 .resizable()
                 .frame(width: 50, height: 50)
                 .cornerRadius(100)
-            Text(meal.strMeal)
+            VStack(alignment: .leading) {
+                Text(meal.strMeal)
+                Text(meal.strCategory)
+                    .foregroundColor(.gray)
+            }
         }
         .onAppear {
-            LoadImage(url: meal.strMealThumb)
-        }
-    }
-    
-    func LoadImage(url: String) {
-        guard let imageURL = URL(string: url) else { return }
-        URLSession.shared.dataTask(with: imageURL) { data, response, error in
-            guard let data = data, error == nil else { return }
-            DispatchQueue.main.async {
-                self.mealImage = UIImage(data: data)
+            MealApi.LoadImage(ImageUrl: meal.strMealThumb) { image in
+                self.mealImage = image
             }
-        }.resume()
+        }
     }
 }
 

@@ -1,22 +1,8 @@
 import SwiftUI
 
-class AppearanceSettings: ObservableObject {
-    @Published var isDarkMode = UserDefaults.standard.bool(forKey: "isDarkMode")
-
-    func toggleDarkMode() {
-        isDarkMode.toggle()
-        UserDefaults.standard.set(isDarkMode, forKey: "isDarkMode")
-        updateAppearance()
-    }
-
-    func updateAppearance() {
-        UIApplication.shared.windows.first?.rootViewController?.overrideUserInterfaceStyle = isDarkMode ? .dark : .light
-    }
-}
-
 struct SettingsView: View {
     @EnvironmentObject var appearanceSettings: AppearanceSettings
-
+    
     var body: some View {
         NavigationView {
             Form {
@@ -34,19 +20,19 @@ struct SettingsView: View {
                         Text("Rediger ingredienser")
                     }
                 }
-
+                
                 Section {
                     HStack {
                         Image(systemName: "moon")
                         Toggle(isOn: $appearanceSettings.isDarkMode) {
-                            Text("Mørk modus")
+                            Text("Dark Mode")
                         }
                         .onChange(of: appearanceSettings.isDarkMode) { _ in
                             appearanceSettings.updateAppearance()
                         }
                     }
                 }
-
+                
                 Section {
                     NavigationLink(destination: ArchiveEditView()) {
                         Image(systemName: "archivebox")

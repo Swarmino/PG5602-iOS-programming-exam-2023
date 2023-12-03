@@ -1,4 +1,5 @@
 import Foundation
+import UIKit
 
 class MealAPI {
     static let baseURL = "https://www.themealdb.com/api/json/v1/1/"
@@ -73,6 +74,21 @@ class MealAPI {
                completion(.failure(error))
            }
        }.resume()
+    }
+    
+    public func LoadImage(ImageUrl: String, completion: @escaping (UIImage) -> Void) {
+        guard let url = URL(string: ImageUrl) else {
+            return
+        }
+        URLSession.shared.dataTask(with: url) { (data, _, _) in
+            guard let data = data else {
+                return
+            }
+            guard let image = UIImage(data: data) else {
+                return
+            }
+            completion(image)
+        }.resume()
     }
 
 }

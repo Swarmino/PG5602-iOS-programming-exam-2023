@@ -10,8 +10,13 @@ import CoreData
 
 struct ContentView: View {
     
+    let appearanceSettings = AppearanceSettings()
+    
     var body: some View {
         MainView()
+            .onAppear{
+                appearanceSettings.updateAppearance()
+            }
     }
 }
 

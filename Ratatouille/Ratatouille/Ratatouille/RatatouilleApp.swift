@@ -10,6 +10,7 @@ import SwiftUI
 @main
 struct RatatouilleApp: App {
     @StateObject private var appearanceSettings = AppearanceSettings()
+    
     let persistenceController = PersistenceController.shared
 
     var body: some Scene {

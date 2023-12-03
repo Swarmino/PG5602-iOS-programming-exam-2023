@@ -47,13 +47,14 @@ struct ArchiveEditView: View {
     
     var body: some View {
         NavigationView {
-        Form {
-            Section(header: Text("Archived meals")) {
-                if meals.isEmpty {
-                    HStack{
-                        Text("No archived meals")
-                    }
-                } else {
+            Form {
+                
+                Section(header: Text("Oppskrifter")) {
+                    if meals.isEmpty {
+                        HStack{
+                            Text("Ingen arkiverte oppskrifter")
+                        }
+                    } else {
                         List {
                             ForEach(meals) { meal in
                                 Text("\(meal.name!)")
@@ -62,9 +63,51 @@ struct ArchiveEditView: View {
                         }
                     }
                 }
-            Section(header: Text("Archived Ingredients")) {
-                Text("Ingredients")
-            }
+                
+                Section(header: Text("Ingredienser")) {
+                    if ingredients.isEmpty {
+                        HStack{
+                            Text("Ingen arkiverte ingredienser")
+                        }
+                    } else {
+                        List {
+                            ForEach(ingredients) { ingredient in
+                                Text("\(ingredient.name!)")
+                            }
+                            .onDelete(perform: deleteIngredients)
+                        }
+                    }
+                }
+                
+                Section(header: Text("Områder")) {
+                    if areas.isEmpty {
+                        HStack{
+                            Text("Ingen arkiverte områder")
+                        }
+                    } else {
+                        List {
+                            ForEach(areas) { area in
+                                Text("\(area.name!)")
+                            }
+                            .onDelete(perform: deleteArea)
+                        }
+                    }
+                }
+                
+                Section(header: Text("Kategorier")) {
+                    if categories.isEmpty {
+                        HStack{
+                            Text("Ingen arkiverte kategorier")
+                        }
+                    } else {
+                        List {
+                            ForEach(categories) { category in
+                                Text("\(category.name!)")
+                            }
+                            .onDelete(perform: deleteCategory)
+                        }
+                    }
+                }
             }
         }
     }

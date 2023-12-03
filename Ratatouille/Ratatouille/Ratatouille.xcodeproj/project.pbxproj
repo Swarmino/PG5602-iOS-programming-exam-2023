@@ -24,6 +24,8 @@
 		7E7FA7612B1A236100746F32 /* Meal+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FA7592B1A236100746F32 /* Meal+CoreDataProperties.swift */; };
 		7E7FA7622B1A236100746F32 /* Area+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FA75A2B1A236100746F32 /* Area+CoreDataClass.swift */; };
 		7E7FA7632B1A236100746F32 /* Area+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FA75B2B1A236100746F32 /* Area+CoreDataProperties.swift */; };
+		7E7FA7652B1C813600746F32 /* MealLocalDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FA7642B1C813600746F32 /* MealLocalDetailView.swift */; };
+		7E7FA7672B1C95CE00746F32 /* AppearanceSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E7FA7662B1C95CE00746F32 /* AppearanceSettings.swift */; };
 		7EA0F27D2B14C7F90084AC3D /* RatatouilleApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0F27C2B14C7F90084AC3D /* RatatouilleApp.swift */; };
 		7EA0F27F2B14C7F90084AC3D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7EA0F27E2B14C7F90084AC3D /* ContentView.swift */; };
 		7EA0F2812B14C7FA0084AC3D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7EA0F2802B14C7FA0084AC3D /* Assets.xcassets */; };
@@ -73,6 +75,8 @@
 		7E7FA7592B1A236100746F32 /* Meal+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Meal+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		7E7FA75A2B1A236100746F32 /* Area+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Area+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7E7FA75B2B1A236100746F32 /* Area+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Area+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7E7FA7642B1C813600746F32 /* MealLocalDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MealLocalDetailView.swift; sourceTree = "<group>"; };
+		7E7FA7662B1C95CE00746F32 /* AppearanceSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceSettings.swift; sourceTree = "<group>"; };
 		7EA0F2792B14C7F90084AC3D /* Ratatouille.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Ratatouille.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7EA0F27C2B14C7F90084AC3D /* RatatouilleApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatatouilleApp.swift; sourceTree = "<group>"; };
 		7EA0F27E2B14C7F90084AC3D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -128,6 +132,7 @@
 				7E7FA73D2B1A16F300746F32 /* IngredientEditView.swift */,
 				7E7FA73F2B1A170B00746F32 /* CategoryEditView.swift */,
 				7E75752F2B1776F20018BA2F /* MealDetailView.swift */,
+				7E7FA7642B1C813600746F32 /* MealLocalDetailView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -183,6 +188,7 @@
 				7E69127B2B14CB88007F8650 /* Views */,
 				7EA0F2BB2B14C9410084AC3D /* Models */,
 				7EA0F27C2B14C7F90084AC3D /* RatatouilleApp.swift */,
+				7E7FA7662B1C95CE00746F32 /* AppearanceSettings.swift */,
 				7EA0F2802B14C7FA0084AC3D /* Assets.xcassets */,
 				7EA0F2852B14C7FA0084AC3D /* Persistence.swift */,
 				7EA0F2872B14C7FA0084AC3D /* Ratatouille.xcdatamodeld */,
@@ -365,6 +371,7 @@
 				7E7575302B1776F20018BA2F /* MealDetailView.swift in Sources */,
 				7E7FA75F2B1A236100746F32 /* Category+CoreDataProperties.swift in Sources */,
 				7E75752C2B175D1F0018BA2F /* MealDataModel.swift in Sources */,
+				7E7FA7652B1C813600746F32 /* MealLocalDetailView.swift in Sources */,
 				7E7FA7602B1A236100746F32 /* Meal+CoreDataClass.swift in Sources */,
 				7E7FA73E2B1A16F300746F32 /* IngredientEditView.swift in Sources */,
 				7E7FA7632B1A236100746F32 /* Area+CoreDataProperties.swift in Sources */,
@@ -374,6 +381,7 @@
 				7EA0F27F2B14C7F90084AC3D /* ContentView.swift in Sources */,
 				7E7FA75D2B1A236100746F32 /* Ingredient+CoreDataProperties.swift in Sources */,
 				7EA0F2892B14C7FA0084AC3D /* Ratatouille.xcdatamodeld in Sources */,
+				7E7FA7672B1C95CE00746F32 /* AppearanceSettings.swift in Sources */,
 				7EA0F27D2B14C7F90084AC3D /* RatatouilleApp.swift in Sources */,
 				7E7FA7612B1A236100746F32 /* Meal+CoreDataProperties.swift in Sources */,
 				7E7FA75C2B1A236100746F32 /* Ingredient+CoreDataClass.swift in Sources */,

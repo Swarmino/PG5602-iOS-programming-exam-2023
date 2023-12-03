@@ -33,7 +33,7 @@ struct MealDetailView: View {
                 HStack{
                     Text("Area: \(meal.strArea)")
                         .font(.headline)
-                    Image(uiImage: flagImage ?? UIImage(systemName: "photo")!)
+                    Image(uiImage: flagImage ?? UIImage(systemName: "flag.slash")!)
                         .resizable()
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 20)
