@@ -37,7 +37,6 @@ struct SearchView: View {
             }
         }
         .onDisappear {
-            // Cache the results when the view disappears
             searchResultsCache.cacheResults(query: "", results: mealResults)
         }
     }

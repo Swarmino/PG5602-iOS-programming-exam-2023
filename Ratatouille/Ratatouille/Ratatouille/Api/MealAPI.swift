@@ -42,39 +42,70 @@ class MealAPI {
     }
     
     private func fetchData(urlString: String, completion: @escaping (Result<[MealData], Error>) -> Void) {
-       guard let url = URL(string: urlString) else {
-           completion(.failure(NetworkError.invalidURL))
-           return
-       }
+        guard let url = URL(string: urlString) else {
+            completion(.failure(NetworkError.invalidURL))
+            return
+        }
 
-       URLSession.shared.dataTask(with: url) { (data, _, error) in
-           if let error = error {
-               completion(.failure(error))
-               return
-           }
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
+            if let error = error {
+                completion(.failure(error))
+                return
+            }
 
-           guard let data = data else {
-               completion(.failure(NetworkError.invalidData))
-               return
-           }
+            guard let data = data else {
+                completion(.failure(NetworkError.invalidData))
+                return
+            }
 
-           do {
-               let decoder = JSONDecoder()
-               decoder.keyDecodingStrategy = .convertFromSnakeCase
-               let response = try decoder.decode(MealResponse.self, from: data)
+            do {
+                let decoder = JSONDecoder()
+                decoder.keyDecodingStrategy = .convertFromSnakeCase
+                if let string = String(data: data, encoding: .utf8) {
+                    print(string)
+                }
 
-               if let meals = response.meals, !meals.isEmpty {
-                   completion(.success(meals))
-               } else if let firstMeal = response.meals?.first {
-                   self.fetchById(id: firstMeal.idMeal, completion: completion)
-               } else {
-                   completion(.failure(NetworkError.invalidData))
-               }
-           } catch {
-               completion(.failure(error))
-           }
-       }.resume()
+                // Attempt to decode as MealResponse
+                if let response = try? decoder.decode(MealResponse.self, from: data),
+                   let meals = response.meals, !meals.isEmpty {
+                    completion(.success(meals))
+                } else {
+                    // If decoding as MealResponse fails, attempt to decode as MealSimplifiedResponse
+                    let simplifiedResponse = try decoder.decode(MealSimplifiedResponse.self, from: data)
+                    
+                    // Extract idMeal values
+                    let idMeals = simplifiedResponse.meals?.compactMap { $0.idMeal } ?? []
+
+                    // Use idMeals to fetch detailed information for each idMeal
+                    let dispatchGroup = DispatchGroup()
+                    var detailedMeals: [MealData] = []
+
+                    for idMeal in idMeals {
+                        dispatchGroup.enter()
+
+                        self.fetchById(id: idMeal) { result in
+                            switch result {
+                            case .success(let detailedMeal):
+                                detailedMeals.append(contentsOf: detailedMeal)
+                            case .failure(let error):
+                                print("Error fetching by id: \(error)")
+                            }
+
+                            dispatchGroup.leave()
+                        }
+                    }
+
+                    dispatchGroup.notify(queue: .main) {
+                        completion(.success(detailedMeals))
+                    }
+                }
+            } catch {
+                completion(.failure(error))
+            }
+        }.resume()
     }
+
+
     
     public func LoadImage(ImageUrl: String, completion: @escaping (UIImage) -> Void) {
         guard let url = URL(string: ImageUrl) else {
@@ -95,6 +126,23 @@ class MealAPI {
 
 struct MealResponse: Codable {
     let meals: [MealData]?
+}
+
+struct MealSimplifiedResponse: Codable {
+    let meals: [MealSimplifiedResponseObj]?
+}
+
+struct MealSimplifiedResponseObj: Codable, Identifiable {
+    var id = UUID()
+    let strMeal: String
+    let strMealThumb: String
+    let idMeal: String
+    
+    enum CodingKeys: String, CodingKey {
+        case strMeal
+        case strMealThumb
+        case idMeal
+    }
 }
 
 enum NetworkError: Error {
